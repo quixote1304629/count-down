@@ -1,7 +1,7 @@
 <template>
   <div class="count-down">
     <div class="count-label" :style="labelStyle">{{ countDownLabel }}</div>
-    <div v-if="countDownStatus != countDownStatusObj.OVER" class="times">
+    <div v-if="countDownStatus != countDownStatusObj.OVER" class="times flex-center">
       <div class="count-time count-hours flex-center" :style="timeStyle">
         {{ (theCountDown.day * 24 + theCountDown.hours) | formatTime }}
       </div>
