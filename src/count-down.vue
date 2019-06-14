@@ -94,13 +94,12 @@ export default {
   }
 
   .count-time {
-    min-width: 17px;
+    min-width: 19px;
     text-align: center;
-    height: 15px;
-    line-height: 15px;
+    height: 17px;
+    line-height: 17px;
     background: #fb4c3e;
     border-radius: 3px;
-    border: 1px solid #fb4c3e;
     font-size: 12px;
     font-family: PingFangSC-Regular, sans-serif;
     font-weight: 400;
