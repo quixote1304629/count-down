@@ -1,26 +1,26 @@
 <template>
-  <div>
-    <p class="count-label" :style="labelStyle">{{ countDownLabel }}</p>
+  <div class="count-down">
+    <div class="count-label" :style="labelStyle">{{ countDownLabel }}</div>
     <div v-if="countDownStatus != countDownStatusObj.OVER" class="times">
-      <p class="count-time count-hours" :style="timeStyle">
+      <div class="count-time count-hours flex-center" :style="timeStyle">
         {{ (theCountDown.day * 24 + theCountDown.hours) | formatTime }}
-      </p>
-      <span v-if="showColon" class="colon" :style="colonStyle">:</span>
-      <span v-if="showTimeName" class="timeName" :style="timeNameStyle"
-      >时</span
+      </div>
+      <div v-if="showColon" class="colon" :style="colonStyle">:</div>
+      <div v-if="showTimeName" class="timeName" :style="timeNameStyle"
+      >时</div
       >
-      <p class="count-time count-minute" :style="timeStyle">
+      <div class="count-time count-minute flex-center" :style="timeStyle">
         {{ theCountDown.minute | formatTime }}
-      </p>
-      <span v-if="showColon" class="colon" :style="colonStyle">:</span>
-      <span v-if="showTimeName" class="timeName" :style="timeNameStyle"
-      >分</span
+      </div>
+      <div v-if="showColon" class="colon" :style="colonStyle">:</div>
+      <div v-if="showTimeName" class="timeName" :style="timeNameStyle"
+      >分</div
       >
-      <p class="count-time count-second" :style="timeStyle">
+      <div class="count-time count-second flex-center" :style="timeStyle">
         {{ theCountDown.second | formatTime }}
-      </p>
-      <span v-if="showTimeName" class="timeName" :style="timeNameStyle"
-      >秒</span
+      </div>
+      <div v-if="showTimeName" class="timeName" :style="timeNameStyle"
+      >秒</div
       >
     </div>
   </div>
@@ -77,8 +77,19 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .count-down {
+    display flex;
+    align-items: center;
+    line-height 1;
+  }
+
   .count-label {
-    display: inline-block;
     font-size: 12px;
     font-family: PingFangSC-Regular, sans-serif;
     font-weight: 400;
@@ -86,18 +97,19 @@ export default {
   }
 
   .times {
-    display: inline-block;
+    display flex;
+    margin-left 7px;
 
-    p {
-      display: inline-block;
+    div + div {
+      margin-left: 3px;
     }
   }
 
   .count-time {
-    min-width: 19px;
+    padding: 0 1px;
+    min-width: 16px;
+    height: 16px;
     text-align: center;
-    height: 17px;
-    line-height: 17px;
     background: #fb4c3e;
     border-radius: 3px;
     font-size: 12px;
