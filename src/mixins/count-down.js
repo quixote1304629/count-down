@@ -96,8 +96,7 @@ export default {
       this.theCountDown.day = Math.floor(diffTime / 86400000)
       this.theCountDown.hours = Math.floor((diffTime % 86400000) / 3600000)
       this.theCountDown.minute = Math.floor((diffTime % 3600000) / 60000)
-      // 秒数位向上取整
-      this.theCountDown.second = Math.ceil((diffTime % 60000) / 1000)
+      this.theCountDown.second = Math.floor((diffTime % 60000) / 1000)
 
       // 判断提醒时间点
       this.judgeRemind(this.countDownStatus, diffTime)

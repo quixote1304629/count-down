@@ -5,9 +5,9 @@
   <div class="demo-count">
     <count-down
       :sign="'No.5667'"
-      :now="1560404666000"
-      :start="1560404671000"
-      :end="1570504676000"
+      :now="1560404661500"
+      :start="1560404666500"
+      :end="1560404669500"
       :remindBeforeStart="[3000, 2000]"
       :remindProcessing="[3000, 2000]"
       @start="countDownStart"
