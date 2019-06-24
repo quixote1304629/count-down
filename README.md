@@ -7,18 +7,18 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/quixoter/count-down/pulls)
 [![Automated Release Notes by gren](https://img.shields.io/badge/%F0%9F%A4%96-release%20notes-00B2EE.svg)](https://github-tools.github.io/github-release-notes/)
 
-项目简要说明 + 示例图
+vue 倒计时组件
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-- [Feature](#feature)
-- [Demo](#demo)
-- [Install](#install)
-- [Example](#example)
-- [Reference](#reference)
-- [Contributors](#contributors)
-- [License](#license)
+* [Introduction](#introduction)
+* [Feature](#feature)
+* [Demo](#demo)
+* [Install](#install)
+* [Example](#example)
+* [Reference](#reference)
+* [Contributors](#contributors)
+* [License](#license)
 
 ## Introduction
 
@@ -36,6 +36,12 @@
 
 ## Install
 
+```
+yarn add @quixoter/count-down
+or
+npm i @quixoter/count-down
+```
+
 [⬆ Back to Top](#table-of-contents)
 
 ## Example
@@ -51,6 +57,7 @@
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+
 <!-- prettier-ignore -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
