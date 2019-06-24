@@ -11,17 +11,17 @@ export default {
   mixins: [timer],
   props: {
     /** 组件标记，可在列表中灵活传递*/
-    sign: {type: [Number, String, Object], require: false, default: -1},
+    sign: {type: [Number, String, Object], required: false, default: -1},
     /** 当前时间*/
-    now: {type: Number, require: false, default: null},
+    now: {type: Number, required: false, default: null},
     /** 开始时间*/
-    start: {type: Number, require: true, default: 0},
+    start: {type: Number, required: true, default: 0},
     /** 结束时间*/
-    end: {type: Number, require: true, default: 0},
+    end: {type: Number, required: true, default: 0},
     /** 提醒节点(在开始前)[ms], 数值>=1000*/
-    remindBeforeStart: {type: Array, require: false, default: () => []},
+    remindBeforeStart: {type: Array, required: false, default: () => []},
     /** 提醒节点(进行中)[ms], 数值>=1000*/
-    remindProcessing: {type: Array, require: false, default: () => []}
+    remindProcessing: {type: Array, required: false, default: () => []}
   },
   data() {
     return {
@@ -42,6 +42,26 @@ export default {
     }
   },
   computed: {},
+  watch: {
+    now: {
+      handler(val) {
+        this.theTime.now = val
+      },
+      immediate: false
+    },
+    start: {
+      handler(val) {
+        this.theTime.start = val
+      },
+      immediate: false
+    },
+    end: {
+      handler(val) {
+        this.theTime.end = val
+      },
+      immediate: false
+    }
+  },
   methods: {
     /** 初始化 */
     initCountDown() {
@@ -50,9 +70,28 @@ export default {
         return
       }
       this.calcCountDown()
-      if (this.now < this.end) {
+      if (this.theTime.now < this.theTime.end) {
         this.setTimer(this.timedTask(), 1000)
       }
+    },
+    /**
+     * @public
+     * 重置组件(如果初始化时，now是外部传入的，那么建议用户在重置时，传入新的当前时间，否则存在0-1s的误差[此误差不可避免])
+     */
+    reset() {
+      // 清空定时器
+      this.clearTimer()
+
+      // 刷新时间theTime(这里考虑到now修改的话存在0-1s的误差，所以建议用户重置时重新传入当前时间，并且使用watch的方式修改组件内部的时间变量)
+
+      // 重新初始化组件
+      this.$nextTick(() => {
+        // 针对now，也做特殊处理
+        if (!this.now) {
+          this.theTime.now = new Date().getTime()
+        }
+        this.initCountDown()
+      })
     },
     /** 校验时间 */
     checkTime() {
