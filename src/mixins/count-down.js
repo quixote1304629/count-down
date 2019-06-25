@@ -71,13 +71,7 @@ export default {
       }
 
       // 重新初始化组件
-      this.$nextTick(() => {
-        // 针对now，也做特殊处理
-        if (!this.now) {
-          this.theTime.now = new Date().getTime()
-        }
-        this.initCountDown()
-      })
+      this.initCountDown()
     },
     /** 校验时间 */
     checkTime() {
