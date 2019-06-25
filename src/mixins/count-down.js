@@ -42,26 +42,7 @@ export default {
     }
   },
   computed: {},
-  watch: {
-    now: {
-      handler(val) {
-        this.theTime.now = val
-      },
-      immediate: false
-    },
-    start: {
-      handler(val) {
-        this.theTime.start = val
-      },
-      immediate: false
-    },
-    end: {
-      handler(val) {
-        this.theTime.end = val
-      },
-      immediate: false
-    }
-  },
+  watch: {},
   methods: {
     /** 初始化 */
     initCountDown() {
@@ -76,13 +57,18 @@ export default {
     },
     /**
      * @public
-     * 重置组件(如果初始化时now是外部传入的，那么在重置时也需要传入最新的当前时间. 因为如果在结束后，定时器关闭，不会再theTime.now--，故需要新的当前时间）
+     * 重置组件(如果初始化时now是外部传入的，那么在重置时也需要传入最新的当前时间.因为如果在结束后做重置动作，定时器此时已经关闭，不会再theTime.now--，故需要新的当前时间）
      */
     reset() {
       // 清空定时器
       this.clearTimer()
 
-      // 刷新时间theTime(使用watch的方式修改组件内部的时间变量)
+      // 重置时间theTime
+      this.theTime = {
+        now: this.now || new Date().getTime(),
+        start: this.start,
+        end: this.end
+      }
 
       // 重新初始化组件
       this.$nextTick(() => {
