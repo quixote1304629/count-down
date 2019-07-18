@@ -63,15 +63,17 @@ export default {
       // 清空定时器
       this.clearTimer()
 
-      // 重置时间theTime
-      this.theTime = {
-        now: this.now || new Date().getTime(),
-        start: this.start,
-        end: this.end
-      }
+      this.$nextTick(() => {
+        // 重置时间theTime
+        this.theTime = {
+          now: this.now || new Date().getTime(),
+          start: this.start,
+          end: this.end
+        }
 
-      // 重新初始化组件
-      this.initCountDown()
+        // 重新初始化组件
+        this.initCountDown()
+      })
     },
     /** 校验时间 */
     checkTime() {

@@ -1,4 +1,4 @@
-基本用法
+异步重置用法
 
 ```vue
 <template>
@@ -9,14 +9,11 @@
       :now="theTime.now"
       :start="theTime.start"
       :end="theTime.end"
-      :remindBeforeStart="[3000, 2000]"
-      :remindProcessing="[3000, 2000]"
       @start="countDownStart"
       @end="countDownEnd"
-      @remindBeforeStart="remindBeforeStart($event, 'remindBeforeStart')"
-      @remindProcessing="remindProcessing($event, 'remindProcessing')"
     >
     </count-down>
+    <button class="btn-reset" @click="resetCountDown">修改当前时间+重置组件</button>
   </div>
 </template>
 <script>
@@ -26,26 +23,33 @@ export default {
   data() {
     return {
       theTime: {
-        now: 1560404661500,
-        start: 1560404666500,
-        end: 1560404669500,
+        now: 0,
+        start: 0,
+        end: 0,
       }
     }
   },
   methods: {
     countDownStart(val) {
-      console.log('basic: countDownStart', val)
+      console.log('reset: countDownStart', val)
     },
     countDownEnd(val) {
-      console.log('basic: countDownEnd', val)
+      console.log('reset: countDownEnd', val)
     },
-    // 开始前提醒
-    remindBeforeStart(index, label) {
-      console.log(`basic: 开始前提醒:${index},${label}`)
+    // 重置定时器
+    resetCountDown(){
+      this.fetchTimes().then(res => {
+        this.theTime = {...res}
+        this.$refs.countDown.reset()
+      })
+     
     },
-    // 进行中提醒
-    remindProcessing(index, label) {
-      console.log(`basic: 进行中提醒:${index},${label}`)
+    fetchTimes(){
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve({now: 1563435862000, start: 1563435864000, end: 1563435867000})
+        }, 500)
+      })
     }
   },
   created() {}
